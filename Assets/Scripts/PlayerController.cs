@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public float tilt;
     public Boundary boundary;
-
     public GameObject shot;
     public Transform shotSpawn; //shotSpawn.transform.position
     public float fireRate;
