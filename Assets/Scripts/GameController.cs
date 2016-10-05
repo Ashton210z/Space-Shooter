@@ -21,18 +21,21 @@ public class GameController : MonoBehaviour
     public Text highScoreText;
 
     public GameObject persisObject;
-    //public DontDestroy script;
 
     private bool gameOver;
     private bool restart;
     private int score;
+    private DontDestroy script;
 
     void Start()
     {
         gameOver = false;
         restart = false;
-        //persisObject = GameObject.FindGameObjectWithTag("Score") as GameObject;
-        //script = persisObject.GetComponent<DontDestroy>();
+        if (GameObject.FindGameObjectWithTag("Score") == true)
+        {
+            persisObject = GameObject.FindGameObjectWithTag("Score") as GameObject;
+            script = persisObject.GetComponent<DontDestroy>();
+        }
         restartText.text = "";
         gameOverText.text = "";        
         score = 0;
@@ -42,11 +45,16 @@ public class GameController : MonoBehaviour
 
     void UpdateScore()
     {
-        //scoreText.text = script.playerName + "Score : " + score;
-        scoreText.text = "Score : " + score;
+        if (script != null)
+        {
+            scoreText.text = script.playerName + " Score : " + score;
+        }
+        else
+        {
+            scoreText.text = "Score : " + score;
+        }
     }
-
-    void Update()
+        void Update()
     {
         if (restart)
         {
